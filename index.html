@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/Bootstrap/bootstrap.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/logo-1.png"
+      type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Jobko | Portal</title>
+  </head>
+  <body>
+    <div class="container-fluid px-3 px-md-4">
+      <div class="content-wrapper mx-auto">
+        <!-- Navbar -->
+        <nav class="navbar sticky-top mt-0 py-3 px-md-4 mb-4 shadow-sm">
+          <div
+            class="container-fluid d-flex align-items-center justify-content-between flex-wrap">
+            <!-- Left Side w Profile Image and Welcome text -->
+            <div class="d-flex align-items-center mb-3 mb-sm-0">
+              <i class="bi bi-person me-2"></i>
+              <a href="assets/pages/login.html" class="d-flex flex-column">
+                <p class="mb-0 text-white small">Hello There!</p>
+                <h6 class="mb-0 fw-bold text-white">Hello! User👋</h6>
+              </a>
+            </div>
+
+            <!-- Right Side w Notification and Icon -->
+            <div class="d-flex align-items-center justify-content-center">
+              <a
+                href=""
+                class="btn btn-link text-white me-3"
+                data-bs-toggle="modal"
+                data-bs-target="#darkModeModal">
+                <i class="bi bi-bell fs-5" title="Notifications"></i>
+              </a>
+              <button
+                type="button"
+                class="btn btn-link text-white fs-5"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNav"
+                aria-controls="offcanvasNav">
+                <i class="bi bi-menu-button"></i>
+              </button>
+            </div>
+          </div>
+        </nav>
+        <!-- End of Navbar -->
+
+        <!-- offcanvas nav -->
+        <div
+          class="offcanvas offcanvas-start text-white"
+          tabindex="-1"
+          id="offcanvasNav"
+          aria-labelledby="staticBackdropLabel">
+          <div class="offcanvas-header">
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <!-- mobile app ad -->
+            <div
+              class="d-flex align-items-center popular-microsoft mobile-ad rounded gap-3 p-2 mb-3">
+              <img src="assets/img/logo-1.png" width="60px" alt="" />
+              <span class="text-wrap"
+                >Jobko - Job Finder Mobile App <br /><b>Coming Soon</b>
+              </span>
+            </div>
+            <!-- end of mobile app ad -->
+
+            <!-- user profile -->
+            <div class="d-flex align-items-center mb-4 border-0">
+              <i class="bi bi-person me-2"></i>
+              <a href="assets/pages/login.html" class="d-flex flex-column">
+                <p class="mb-0 text-white small">Hello There!</p>
+                <h6 class="mb-0 fw-bold text-white">Login Here!</h6>
+              </a>
+            </div>
+            <!-- end of user profile -->
+
+            <!-- tiny heading -->
+            <span class="nav-heading text-uppercase text-white fw-bold mb-3"
+              >Main menu</span
+            >
+            <!-- end of tiny heading -->
+            <a
+              href=""
+              class="d-flex gap-2 align-items-center border-0 mb-2 text-white">
+              <i class="bi bi-house"></i>
+              <span>Home</span>
+            </a>
+            <a
+              href="assets/pages/login.html"
+              class="d-flex gap-2 align-items-center border-0 mb-2 text-white">
+              <i class="bi bi-person"></i>
+              <span>Profile</span>
+            </a>
+            <!-- tiny heading -->
+            <span class="nav-heading text-uppercase text-white fw-bold mt-3"
+              >Settings</span
+            >
+            <!-- end of tiny heading -->
+            <div class="d-flex justify-content-between border-0">
+              <label class="form-check-label" for="checkNativeSwitch">
+                Dark Mode
+              </label>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input dark-mode-switch"
+                  type="checkbox"
+                  value=""
+                  id="checkNativeSwitch"
+                  switch />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for Notifications -->
+        <div
+          class="modal fade"
+          id="darkModeModal"
+          data-backdrop="static"
+          data-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="darkModeModalLabel"
+          aria-hidden="true">
+          <div
+            class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content text-white border-white border-1">
+              <div
+                class="modal-header d-flex align-items-center justify-content-between">
+                <h5 class="modal-title" id="darkModeModalLabel">
+                  Notifications
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close btn-close-white"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body"></div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Modal for Notifications -->
+
+        <div class="main-content">
+          <!-- Search Bar -->
+          <div
+            class="search-container rounded mb-4 container d-flex align-items-center justify-content-evenly">
+            <label for="search" class="">
+              <i class="bi bi-search"></i>
+            </label>
+            <input
+              type="text"
+              class=""
+              name="search"
+              id="search"
+              placeholder="Search..." />
+            <button class="btn text-white">
+              <i class="bi bi-filter text-white"></i>
+            </button>
+          </div>
+          <!-- End of Search Bar -->
+
+          <!-- banner -->
+          <section class="banner mb-4 d-flex">
+            <div class="d-flex flex-column">
+              <h6 class="fw-bold mb-2">
+                Let's find a new job <br />
+                suitable for you
+              </h6>
+              <a
+                href="assets/pages/login.html"
+                class="learn-more btn text-white fw-semibold"
+                >Start Search</a
+              >
+            </div>
+            <img src="assets/img/banner-1.png" alt="Smiling man" />
+          </section>
+          <!-- end of banner -->
+
+          <h5 class="text-white text-start mb-4">Browse By Category</h5>
+
+          <!-- job categories -->
+          <section class="job-categories mb-4">
+            <div class="d-flex flex-wrap justify-content-around">
+              <div class="d-flex flex-column gap-1">
+                <a href="" class="category-img p-2 rounded">
+                  <img
+                    src="assets/img/company.png"
+                    class="rounded border-white"
+                    width="46px"
+                    alt="" />
+                </a>
+                <span>Company</span>
+              </div>
+              <div class="d-flex flex-column gap-1">
+                <a href="" class="category-img p-2 rounded">
+                  <img
+                    src="assets/img/pull-time.png"
+                    class="rounded border-white"
+                    width="46px"
+                    alt="" />
+                </a>
+                <span>Full Time</span>
+              </div>
+              <div class="d-flex flex-column gap-1">
+                <a href="" class="category-img p-2 rounded">
+                  <img
+                    src="assets/img/part-time.png"
+                    class="rounded border-white"
+                    width="46px"
+                    alt="" />
+                </a>
+                <span>Part Time</span>
+              </div>
+              <div class="d-flex flex-column gap-1">
+                <a href="" class="category-img p-2 rounded">
+                  <img
+                    src="assets/img/freelancer.png"
+                    class="rounded border-white"
+                    width="46px"
+                    alt="" />
+                </a>
+                <span>Freelance</span>
+              </div>
+            </div>
+          </section>
+          <!-- end of job categories -->
+
+          <!-- popular jobs heading -->
+          <div class="d-flex justify-content-between mb-1 headings">
+            <h5 class="text-white text-start mb-4">Most Popular</h5>
+            <a href="" class="text-white-50">View All</a>
+          </div>
+          <!-- end of popular jobs heading -->
+
+          <!-- popular jobs carousel -->
+          <section class="mb-4">
+            <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active rounded popular-google p-3">
+                  <div class="container-fluid">
+                    <!-- Job desc and bookmark -->
+                    <div class="d-flex justify-content-between mb-3">
+                      <div class="d-flex popular-job-details gap-2">
+                        <img src="assets/img/google.png" width="45px" alt="" />
+                        <div class="d-flex flex-column justify-content-between">
+                          <span class="company-name text-white-50"
+                            >Google LLC.</span
+                          >
+                          <span class="job-title text-white"
+                            >Sr. UX Designer</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="bookmark d-flex justify-content-center align-items-center">
+                        <i class="bi bi-bookmark"></i>
+                      </div>
+                    </div>
+                    <!-- End of Job desc and bookmark -->
+
+                    <!-- Job Tags -->
+                    <div class="mb-4 job-tags d-flex gap-2">
+                      <div class="p-2 rounded">Design</div>
+                      <div class="p-2 rounded">Full-Time</div>
+                      <div class="p-2 rounded">Company</div>
+                    </div>
+                    <!-- End of Job Tags -->
+
+                    <!-- salary and apply -->
+                    <div class="d-flex justify-content-between job-salary">
+                      <span class="fw-semibold"
+                        >₦7,000,00/ <sup>Year</sup></span
+                      >
+                      <a href="" class="btn btn-link small text-white"
+                        >Apply Now →</a
+                      >
+                    </div>
+                    <!-- end of salary and apply -->
+                  </div>
+                </div>
+
+                <div class="carousel-item popular-microsoft p-3 rounded">
+                  <div class="container-fluid">
+                    <!-- Job desc and bookmark -->
+                    <div class="d-flex justify-content-between mb-3">
+                      <div class="d-flex popular-job-details gap-2">
+                        <img
+                          src="assets/img/microsoft.png"
+                          width="45px"
+                          alt="" />
+                        <div class="d-flex flex-column justify-content-between">
+                          <span class="company-name text-white-50"
+                            >Microsoft Corp.</span
+                          >
+                          <span class="job-title text-white">Web Designer</span>
+                        </div>
+                      </div>
+                      <div
+                        class="bookmark d-flex justify-content-center align-items-center">
+                        <i class="bi bi-bookmark"></i>
+                      </div>
+                    </div>
+                    <!-- End of Job desc and bookmark -->
+
+                    <!-- Job Tags -->
+                    <div class="mb-4 job-tags d-flex gap-2">
+                      <div class="p-2 rounded">Design</div>
+                      <div class="p-2 rounded">Full-Time</div>
+                      <div class="p-2 rounded">Company</div>
+                    </div>
+                    <!-- End of Job Tags -->
+
+                    <!-- salary and apply -->
+                    <div class="d-flex justify-content-between job-salary">
+                      <span class="fw-semibold"
+                        >₦15,000,000/ <sup>Year</sup></span
+                      >
+                      <a href="" class="btn btn-link small text-white"
+                        >Apply Now →</a
+                      >
+                    </div>
+                    <!-- end of salary and apply -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- end of popular jobs carousel -->
+
+          <!-- recommended jobs heading -->
+          <div class="d-flex justify-content-between mb-2 headings">
+            <h5 class="text-white text-start mb-4">Recommended Jobs</h5>
+            <a href="" class="text-white-50">View All</a>
+          </div>
+          <!-- end of recommended jobs heading -->
+
+          <section
+            class="mb-4 d-flex flex-column align-items-center justify-content-center sign-up-cta">
+            <h3 class="text-center">Sign Up to See Recommended Jobs</h3>
+            <a href="" class="text-white">Sign Up</a>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="assets/Bootstrap/bootstrap.bundle.js"></script>
+  </body>
+</html>

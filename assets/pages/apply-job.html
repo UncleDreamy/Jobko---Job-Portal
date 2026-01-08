@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="../img/logo-1.png" type="image/x-icon" />
+    <title>Jobko | Apply</title>
+  </head>
+  <body>
+    <div class="container-fluid px-3 px-md-4">
+      <div class="content-wrapper mx-auto">
+        <div class="card bg-transparent text-white border-0 mt-5">
+          <div
+            class="card-header d-flex align-items-center justify-content-between">
+            <a
+              href="job-details.html"
+              class="p-1 go-back rounded text-center text-white"
+              ><</a
+            >
+            <h5 class="fw-bold">Apply for Job</h5>
+            <div></div>
+          </div>
+          <div class="card-body">
+            <div class="card-text mb-4 small text-white-50 border-0">
+              Fill the form below to apply for the job
+            </div>
+            <form action="application-success.html">
+              <!-- full name -->
+              <label for="fullname" class="p-1"
+                >Full Name <sup class="text-danger">*</sup></label
+              >
+              <div
+                class="d-flex align-items-center justify-content-between p-3 login-input mb-4">
+                <label for="fullname">
+                  <i class="bi bi-person"></i>
+                </label>
+                <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  value="Eledu Kenneth Somtochukwu"
+                  disabled />
+              </div>
+              <!-- end full name -->
+
+              <!-- portfolio -->
+              <label for="website" class="p-1"
+                >Website, Blog or Portfolio
+                <sup class="text-danger">*</sup></label
+              >
+              <div
+                class="d-flex align-items-center justify-content-between p-3 login-input mb-4">
+                <label for="website">
+                  <i class="bi bi-globe"></i>
+                </label>
+                <input
+                  type="text"
+                  name="website"
+                  id="website"
+                  placeholder="Enter Link To Website, Blog or Portfolio"
+                  required />
+              </div>
+              <!-- end of portfolio -->
+
+              <!-- cv upload -->
+              <label for="cvupload" class="p-1"
+                >Upload Your CV/Resume <sup class="text-danger">*</sup></label
+              >
+              <div
+                class="d-flex align-items-center justify-content-between p-3 login-input mb-4">
+                <label
+                  for="cvupload"
+                  class="cv-upload-label d-flex flex-column justify-content-center align-items-center">
+                  <i class="bi bi-upload mb-1"></i>
+                  <small class="mb-1">Format DOC, PDF or TXT.</small>
+                  <small class="text-primary mb-1">Browse Files</small>
+                </label>
+              </div>
+              <!-- end of cv upload -->
+
+              <label for="additional-info" class="p-1"
+                >Additional Information <sup class="text-danger">*</sup></label
+              >
+              <div>
+                <textarea
+                  name="additional-info"
+                  id="additional-info"
+                  class="bg-transparent w-100 rounded"></textarea>
+              </div>
+
+              <!-- submit button -->
+              <div
+                class="d-flex justify-content-center align-items-center mb-5 mt-4">
+                <button type="submit" class="" id="liveToastBtn">
+                  Submit Application
+                </button>
+              </div>
+              <!-- end of submit button -->
+
+              <input
+                type="file"
+                name="cvupload"
+                id="cvupload"
+                placeholder="Upload Your CV" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../Bootstrap/bootstrap.bundle.js"></script>
+  </body>
+</html>

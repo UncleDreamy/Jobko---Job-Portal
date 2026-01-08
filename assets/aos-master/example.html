@@ -1,0 +1,1850 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOBKO - Your Career Universe</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        background: #0a0a0f;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+        background: #0a0a0f;
+      }
+
+      #canvas-container {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Hero Content */
+      .hero-wrapper {
+        position: relative;
+        z-index: 10;
+        pointer-events: none;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .hero-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 2rem;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 90%;
+        width: auto;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(
+          135deg,
+          #60cbff 0%,
+          #3664f4 50%,
+          #e85353 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.05em;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+
+      .tagline {
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 0.5rem;
+        font-weight: 400;
+        animation: fadeInUp 1s ease-out 0.4s both;
+      }
+
+      .subtitle {
+        font-size: clamp(0.85rem, 1.5vw, 1rem);
+        color: rgba(96, 203, 255, 0.8);
+        margin-bottom: 2rem;
+        font-weight: 500;
+        animation: fadeInUp 1s ease-out 0.6s both;
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeInUp 1s ease-out 0.8s both;
+        pointer-events: all;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.75rem;
+        font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-primary {
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        color: white;
+        box-shadow: 0 10px 40px rgba(96, 203, 255, 0.3);
+      }
+
+      .cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 50px rgba(96, 203, 255, 0.5);
+      }
+
+      .cta-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .cta-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+      }
+
+      /* Floating Stats */
+      .stats-container {
+        position: relative;
+        display: flex;
+        gap: 2rem;
+        animation: fadeInUp 1s ease-out 1s both;
+        pointer-events: none;
+        z-index: 10;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 90%;
+        margin-top: 3rem;
+      }
+
+      .stat {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .stat-number {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: clamp(1.25rem, 2.5vw, 2rem);
+        font-weight: 700;
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 0.3rem;
+      }
+
+      /* Scroll Indicator */
+      .scroll-indicator {
+        position: relative;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.5);
+        animation: fadeInUp 1s ease-out 1.2s both,
+          bounce 2s ease-in-out 2s infinite;
+        pointer-events: none;
+        z-index: 10;
+        margin-top: 2rem;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        pointer-events: none;
+      }
+
+      .nav-logo {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        pointer-events: all;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        pointer-events: all;
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        padding: 0.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-links a:hover {
+        color: #60cbff;
+        background: rgba(96, 203, 255, 0.1);
+        border-color: rgba(96, 203, 255, 0.3);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translate(-50%, 0);
+        }
+        50% {
+          transform: translate(-50%, -10px);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        nav {
+          padding: 1.5rem 2rem;
+        }
+
+        .stats-container {
+          display: none;
+        }
+
+        .cta-group {
+          flex-direction: column;
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .cta-button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-content {
+          padding: 2rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+
+        .nav-logo {
+          font-size: 1.25rem;
+        }
+
+        .nav-links a {
+          padding: 0.4rem 1rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      /* About Section */
+      .about-section {
+        position: relative;
+        min-height: 100vh;
+        padding: 8rem 2rem 4rem;
+        background: #0a0a0f;
+        margin-top: 0;
+      }
+
+      .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(96, 203, 255, 0.1);
+        border: 1px solid rgba(96, 203, 255, 0.3);
+        border-radius: 50px;
+        color: #60cbff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .section-title {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #ffffff 0%, #60cbff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+
+      .section-description {
+        font-size: clamp(1.1rem, 2vw, 1.3rem);
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.8;
+        margin-bottom: 4rem;
+        max-width: 800px;
+        animation: fadeInUp 1s ease-out 0.4s both;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 2.5rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+        animation: fadeInUp 1s ease-out both;
+      }
+
+      .feature-card:nth-child(1) {
+        animation-delay: 0.6s;
+      }
+      .feature-card:nth-child(2) {
+        animation-delay: 0.8s;
+      }
+      .feature-card:nth-child(3) {
+        animation-delay: 1s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(96, 203, 255, 0.3);
+        box-shadow: 0 20px 60px rgba(96, 203, 255, 0.15);
+      }
+
+      .feature-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          rgba(96, 203, 255, 0.2),
+          rgba(54, 100, 244, 0.2)
+        );
+        border: 1px solid rgba(96, 203, 255, 0.3);
+      }
+
+      .feature-title {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      .feature-description {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+      }
+
+      .stats-highlight {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        padding: 3rem;
+        background: rgba(96, 203, 255, 0.05);
+        border: 1px solid rgba(96, 203, 255, 0.2);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        animation: fadeInUp 1s ease-out 1.2s both;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-value {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-text {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      @media (max-width: 768px) {
+        .about-section {
+          padding: 4rem 1.5rem 3rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .feature-card {
+          padding: 2rem;
+        }
+
+        .stats-highlight {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding: 2rem;
+        }
+      }
+
+      /* How It Works Section */
+      .how-it-works-section {
+        position: relative;
+        padding: 8rem 2rem;
+        background: #0a0a0f;
+      }
+
+      .how-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .role-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 4rem;
+        flex-wrap: wrap;
+      }
+
+      .role-tab {
+        padding: 1rem 2.5rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      .role-tab.active {
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        border-color: transparent;
+        color: white;
+        box-shadow: 0 10px 30px rgba(96, 203, 255, 0.3);
+      }
+
+      .role-tab:hover {
+        border-color: rgba(96, 203, 255, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .steps-container {
+        display: none;
+      }
+
+      .steps-container.active {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .step-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 2.5rem;
+        position: relative;
+        transition: all 0.4s ease;
+      }
+
+      .step-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(96, 203, 255, 0.3);
+        transform: translateY(-5px);
+      }
+
+      .step-number {
+        position: absolute;
+        top: -20px;
+        left: 2rem;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        box-shadow: 0 5px 20px rgba(96, 203, 255, 0.4);
+      }
+
+      .step-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .step-title {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      .step-description {
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+      }
+
+      /* Featured Jobs Section */
+      .featured-jobs-section {
+        position: relative;
+        padding: 8rem 2rem;
+        background: linear-gradient(
+          180deg,
+          #0a0a0f 0%,
+          rgba(54, 100, 244, 0.05) 50%,
+          #0a0a0f 100%
+        );
+      }
+
+      .jobs-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .jobs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .job-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+
+      .job-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(96, 203, 255, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(96, 203, 255, 0.15);
+      }
+
+      .job-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .company-logo {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(
+          135deg,
+          rgba(96, 203, 255, 0.2),
+          rgba(54, 100, 244, 0.2)
+        );
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+      }
+
+      .job-meta {
+        flex: 1;
+      }
+
+      .job-title {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.3rem;
+      }
+
+      .company-name {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.95rem;
+      }
+
+      .job-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .job-tag {
+        padding: 0.4rem 1rem;
+        background: rgba(96, 203, 255, 0.1);
+        border: 1px solid rgba(96, 203, 255, 0.2);
+        border-radius: 20px;
+        color: #60cbff;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .job-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .job-salary {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #60cbff;
+      }
+
+      .job-apply-btn {
+        padding: 0.6rem 1.5rem;
+        background: rgba(96, 203, 255, 0.1);
+        border: 1px solid rgba(96, 203, 255, 0.3);
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .job-apply-btn:hover {
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        border-color: transparent;
+      }
+
+      .view-all-btn {
+        display: block;
+        margin: 0 auto;
+        padding: 1.2rem 3rem;
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(96, 203, 255, 0.3);
+      }
+
+      .view-all-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(96, 203, 255, 0.5);
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        position: relative;
+        padding: 8rem 2rem;
+        background: #0a0a0f;
+      }
+
+      .faq-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .faq-item:hover {
+        border-color: rgba(96, 203, 255, 0.3);
+      }
+
+      .faq-question {
+        padding: 1.8rem 2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Helvetica", "Arial", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .faq-question:hover {
+        color: #60cbff;
+      }
+
+      .faq-icon {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 2rem;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 500px;
+        padding: 0 2rem 1.8rem;
+      }
+
+      .faq-answer p {
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+      }
+
+      /* Footer */
+      .footer {
+        background: linear-gradient(180deg, #0a0a0f 0%, #050508 100%);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 4rem 2rem 2rem;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-section h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-logo {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+
+      .footer-description {
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: #60cbff;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-link {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background: linear-gradient(135deg, #60cbff, #3664f4);
+        border-color: transparent;
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .how-it-works-section,
+        .featured-jobs-section,
+        .faq-section {
+          padding: 4rem 1.5rem;
+        }
+
+        .steps-container.active {
+          grid-template-columns: 1fr;
+        }
+
+        .jobs-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="nav-logo">JOBKO</a>
+      <div class="nav-links">
+        <a href="#jobs">Browse Jobs</a>
+      </div>
+    </nav>
+
+    <div id="canvas-container">
+      <canvas id="three-canvas"></canvas>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <h1 class="logo">JOBKO</h1>
+          <p class="tagline">Your Career Universe Awaits</p>
+          <p class="subtitle">
+            Connect with opportunities across galaxies of industries
+          </p>
+          <div class="cta-group">
+            <a href="#explore" class="cta-button cta-primary">
+              <span>Explore Jobs</span>
+              <span>→</span>
+            </a>
+            <a href="#post" class="cta-button cta-secondary">
+              <span>Post a Job</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="stats-container">
+          <div class="stat">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Active Jobs</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">1M+</div>
+            <div class="stat-label">Success Stories</div>
+          </div>
+        </div>
+
+        <div class="scroll-indicator">↓ Scroll to explore</div>
+      </div>
+
+      <!-- About Section -->
+      <section class="about-section">
+        <div class="about-container">
+          <span class="section-badge">✨ How It Works</span>
+          <h2 class="section-title">Where Ambition Meets Opportunity</h2>
+          <p class="section-description">
+            JOBKO is your all-in-one career launchpad, connecting talented
+            professionals with dream opportunities. Whether you're seeking
+            full-time positions or flexible part-time gigs, we bridge the gap
+            between exceptional employers and extraordinary talent.
+          </p>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🚀</div>
+              <h3 class="feature-title">Post With Ease</h3>
+              <p class="feature-description">
+                Employers can create stunning job listings in minutes. Reach
+                thousands of qualified candidates actively searching for their
+                next big opportunity.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3 class="feature-title">Smart Matching</h3>
+              <p class="feature-description">
+                Our intelligent system connects the right talent with the right
+                roles. Apply to positions that truly align with your skills and
+                career goals.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">💼</div>
+              <h3 class="feature-title">Flexible Options</h3>
+              <p class="feature-description">
+                From full-time careers to part-time opportunities, explore
+                positions that fit your lifestyle and ambitions. Your perfect
+                role is waiting.
+              </p>
+            </div>
+          </div>
+
+          <div class="stats-highlight">
+            <div class="stat-item">
+              <div class="stat-value">50K+</div>
+              <div class="stat-text">Active Job Listings</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">10K+</div>
+              <div class="stat-text">Trusted Employers</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">1M+</div>
+              <div class="stat-text">Successful Connections</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">24/7</div>
+              <div class="stat-text">Platform Access</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+      <div class="how-container">
+        <span class="section-badge">💡 Simple Process</span>
+        <h2 class="section-title">How JOBKO Works</h2>
+        <p class="section-description">
+          Get started in minutes. Whether you're hiring or hunting, our
+          streamlined process makes connecting effortless.
+        </p>
+
+        <div class="role-tabs">
+          <button class="role-tab active" onclick="switchRole('jobseeker')">
+            For Job Seekers
+          </button>
+          <button class="role-tab" onclick="switchRole('employer')">
+            For Employers
+          </button>
+        </div>
+
+        <div id="jobseeker-steps" class="steps-container active">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-icon">📝</div>
+            <h3 class="step-title">Create Your Profile</h3>
+            <p class="step-description">
+              Sign up and build your professional profile with your skills,
+              experience, and career goals.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-icon">🔍</div>
+            <h3 class="step-title">Browse Opportunities</h3>
+            <p class="step-description">
+              Explore thousands of jobs tailored to your preferences. Filter by
+              location, salary, and type.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-icon">✉️</div>
+            <h3 class="step-title">Apply Instantly</h3>
+            <p class="step-description">
+              Submit applications with one click. Track your progress and get
+              notified of responses.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-icon">🎉</div>
+            <h3 class="step-title">Get Hired</h3>
+            <p class="step-description">
+              Connect with employers, schedule interviews, and land your dream
+              job. It's that simple!
+            </p>
+          </div>
+        </div>
+
+        <div id="employer-steps" class="steps-container">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-icon">🏢</div>
+            <h3 class="step-title">Register Your Company</h3>
+            <p class="step-description">
+              Create your employer account and showcase your company culture,
+              values, and benefits.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-icon">📢</div>
+            <h3 class="step-title">Post Job Listings</h3>
+            <p class="step-description">
+              Create detailed job descriptions with our easy-to-use form. Reach
+              qualified candidates instantly.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-icon">👥</div>
+            <h3 class="step-title">Review Applications</h3>
+            <p class="step-description">
+              Access a pool of talented candidates. Filter, sort, and shortlist
+              the best matches for your role.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-icon">🤝</div>
+            <h3 class="step-title">Hire Top Talent</h3>
+            <p class="step-description">
+              Connect with candidates, conduct interviews, and build your dream
+              team effortlessly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Jobs Section -->
+    <section class="featured-jobs-section">
+      <div class="jobs-container">
+        <span class="section-badge">🔥 Trending Now</span>
+        <h2 class="section-title">Featured Opportunities</h2>
+        <p class="section-description">
+          Discover hand-picked positions from top companies. Updated daily with
+          the hottest opportunities.
+        </p>
+
+        <div class="jobs-grid">
+          <div class="job-card">
+            <div class="job-header">
+              <div class="company-logo">💻</div>
+              <div class="job-meta">
+                <h3 class="job-title">Senior UI/UX Designer</h3>
+                <p class="company-name">TechFlow Inc.</p>
+              </div>
+            </div>
+            <div class="job-tags">
+              <span class="job-tag">Full-Time</span>
+              <span class="job-tag">Remote</span>
+              <span class="job-tag">Design</span>
+            </div>
+            <div class="job-details">
+              <span class="job-salary">$80K - $120K</span>
+              <button class="job-apply-btn">Apply Now</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="company-logo">🚀</div>
+              <div class="job-meta">
+                <h3 class="job-title">Full Stack Developer</h3>
+                <p class="company-name">StartupXYZ</p>
+              </div>
+            </div>
+            <div class="job-tags">
+              <span class="job-tag">Full-Time</span>
+              <span class="job-tag">Hybrid</span>
+              <span class="job-tag">Engineering</span>
+            </div>
+            <div class="job-details">
+              <span class="job-salary">$90K - $140K</span>
+              <button class="job-apply-btn">Apply Now</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="company-logo">📱</div>
+              <div class="job-meta">
+                <h3 class="job-title">Marketing Manager</h3>
+                <p class="company-name">BrandWorks Co.</p>
+              </div>
+            </div>
+            <div class="job-tags">
+              <span class="job-tag">Full-Time</span>
+              <span class="job-tag">On-site</span>
+              <span class="job-tag">Marketing</span>
+            </div>
+            <div class="job-details">
+              <span class="job-salary">$70K - $100K</span>
+              <button class="job-apply-btn">Apply Now</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="company-logo">✍️</div>
+              <div class="job-meta">
+                <h3 class="job-title">Content Writer</h3>
+                <p class="company-name">CreativeHub</p>
+              </div>
+            </div>
+            <div class="job-tags">
+              <span class="job-tag">Part-Time</span>
+              <span class="job-tag">Remote</span>
+              <span class="job-tag">Writing</span>
+            </div>
+            <div class="job-details">
+              <span class="job-salary">$30K - $50K</span>
+              <button class="job-apply-btn">Apply Now</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="company-logo">📊</div>
+              <div class="job-meta">
+                <h3 class="job-title">Data Analyst</h3>
+                <p class="company-name">DataWorks Ltd.</p>
+              </div>
+            </div>
+            <div class="job-tags">
+              <span class="job-tag">Full-Time</span>
+              <span class="job-tag">Hybrid</span>
+              <span class="job-tag">Analytics</span>
+            </div>
+            <div class="job-details">
+              <span class="job-salary">$75K - $110K</span>
+              <button class="job-apply-btn">Apply Now</button>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="company-logo">🎨</div>
+              <div class="job-meta">
+                <h3 class="job-title">Graphic Designer</h3>
+                <p class="company-name">DesignStudio</p>
+              </div>
+            </div>
+            <div class="job-tags">
+              <span class="job-tag">Part-Time</span>
+              <span class="job-tag">Remote</span>
+              <span class="job-tag">Design</span>
+            </div>
+            <div class="job-details">
+              <span class="job-salary">$40K - $65K</span>
+              <button class="job-apply-btn">Apply Now</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="view-all-btn">View All Jobs →</button>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="faq-container">
+        <span class="section-badge">❓ Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-description">
+          Everything you need to know about using JOBKO. Can't find your answer?
+          Contact our support team!
+        </p>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Is JOBKO free to use?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Yes! JOBKO is completely free for job seekers. You can create a
+                profile, browse jobs, and apply to unlimited positions at no
+                cost. Employers have free and premium posting options available.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>How do I create an account?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Simply click "Sign Up" in the navigation, choose whether you're
+                a job seeker or employer, and fill in your details. You can also
+                sign up using your Google or LinkedIn account for faster
+                registration.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>What types of jobs are available?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                JOBKO features both full-time and part-time positions across all
+                industries including tech, design, marketing, healthcare,
+                education, finance, and more. We have remote, hybrid, and
+                on-site opportunities.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>How long does it take to get hired?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                The hiring timeline varies by company and role. Some positions
+                receive responses within 24-48 hours, while others may take 1-2
+                weeks. You'll receive notifications when employers review your
+                application.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Can I post multiple jobs as an employer?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Absolutely! Employers can post unlimited job listings. We offer
+                various packages to help you reach more candidates and fill
+                positions faster. Contact our sales team for enterprise
+                solutions.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+              <span>Is my personal information secure?</span>
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Yes! We use industry-standard encryption and security measures
+                to protect your data. Your personal information is never shared
+                without your consent, and you have full control over your
+                profile visibility.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-logo">JOBKO</div>
+            <p class="footer-description">
+              Connecting exceptional talent with extraordinary opportunities.
+              Your career universe starts here.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link">𝕏</a>
+              <a href="#" class="social-link">in</a>
+              <a href="#" class="social-link">f</a>
+              <a href="#" class="social-link">📷</a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>For Job Seekers</h3>
+            <ul class="footer-links">
+              <li><a href="#">Browse Jobs</a></li>
+              <li><a href="#">Create Profile</a></li>
+              <li><a href="#">Career Resources</a></li>
+              <li><a href="#">Resume Builder</a></li>
+              <li><a href="#">Job Alerts</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>For Employers</h3>
+            <ul class="footer-links">
+              <li><a href="#">Post a Job</a></li>
+              <li><a href="#">Pricing Plans</a></li>
+              <li><a href="#">Talent Search</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+      // ============================================
+      // CONCEPT: "Career Universe" - Jobs as Orbiting Planets
+      // Professional, modern, and mesmerizing
+      // ============================================
+
+      const CONFIG = {
+        colors: {
+          background: 0x0a0a0f,
+          primaryBlue: 0x60cbff,
+          deepBlue: 0x3664f4,
+          coralRed: 0xe85353,
+          purple: 0x9d4edd,
+          yellow: 0xffc300,
+          green: 0x06ffa5,
+        },
+
+        // Job "planets" - each represents a career category
+        jobPlanets: [
+          {
+            title: "Tech",
+            icon: "💻",
+            color: 0x60cbff,
+            size: 0.8,
+            orbitRadius: 6,
+            orbitSpeed: 0.3,
+            offset: 0,
+          },
+          {
+            title: "Design",
+            icon: "🎨",
+            color: 0x9d4edd,
+            size: 0.7,
+            orbitRadius: 5,
+            orbitSpeed: 0.4,
+            offset: Math.PI * 0.33,
+          },
+          {
+            title: "Creative",
+            icon: "🎬",
+            color: 0xe85353,
+            size: 0.75,
+            orbitRadius: 7,
+            orbitSpeed: 0.25,
+            offset: Math.PI * 0.66,
+          },
+          {
+            title: "Business",
+            icon: "💼",
+            color: 0x3664f4,
+            size: 0.65,
+            orbitRadius: 5.5,
+            orbitSpeed: 0.35,
+            offset: Math.PI,
+          },
+          {
+            title: "Science",
+            icon: "🔬",
+            color: 0x06ffa5,
+            size: 0.7,
+            orbitRadius: 6.5,
+            orbitSpeed: 0.28,
+            offset: Math.PI * 1.33,
+          },
+          {
+            title: "Education",
+            icon: "📚",
+            color: 0xffc300,
+            size: 0.6,
+            orbitRadius: 4.5,
+            orbitSpeed: 0.45,
+            offset: Math.PI * 1.66,
+          },
+        ],
+
+        particles: {
+          count: 1500,
+          size: 0.02,
+          spread: 40,
+        },
+      };
+
+      let scene,
+        camera,
+        renderer,
+        centralSphere,
+        planets = [],
+        particleSystem;
+      let mouseX = 0,
+        mouseY = 0,
+        targetX = 0,
+        targetY = 0;
+      const clock = new THREE.Clock();
+
+      function createPlanetTexture(title, icon, color) {
+        const canvas = document.createElement("canvas");
+        canvas.width = 256;
+        canvas.height = 256;
+        const ctx = canvas.getContext("2d");
+
+        // Gradient sphere effect
+        const gradient = ctx.createRadialGradient(128, 128, 30, 128, 128, 128);
+        const hexColor = "#" + color.toString(16).padStart(6, "0");
+        gradient.addColorStop(0, hexColor);
+        gradient.addColorStop(0.7, hexColor + "cc");
+        gradient.addColorStop(1, hexColor + "00");
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 256, 256);
+
+        // Icon
+        ctx.font = "bold 80px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(icon, 128, 128);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+        return texture;
+      }
+
+      function createLabelSprite(text, color) {
+        const canvas = document.createElement("canvas");
+        canvas.width = 512;
+        canvas.height = 128;
+        const ctx = canvas.getContext("2d");
+
+        // Background
+        ctx.fillStyle = "rgba(10, 10, 15, 0.9)";
+        ctx.roundRect(0, 20, 512, 88, 44);
+        ctx.fill();
+
+        // Border glow
+        ctx.strokeStyle = "#" + color.toString(16).padStart(6, "0");
+        ctx.lineWidth = 3;
+        ctx.roundRect(0, 20, 512, 88, 44);
+        ctx.stroke();
+
+        // Text
+        ctx.fillStyle = "white";
+        ctx.font = "bold 48px Inter, Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(text, 256, 64);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+
+        const material = new THREE.SpriteMaterial({
+          map: texture,
+          transparent: true,
+          opacity: 0.9,
+        });
+        const sprite = new THREE.Sprite(material);
+        sprite.scale.set(2, 0.5, 1);
+
+        return sprite;
+      }
+
+      function init() {
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(CONFIG.colors.background);
+        scene.fog = new THREE.FogExp2(CONFIG.colors.background, 0.015);
+
+        camera = new THREE.PerspectiveCamera(
+          60,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        camera.position.set(0, 5, 12);
+        camera.lookAt(0, 0, 0);
+
+        const canvas = document.getElementById("three-canvas");
+        renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          antialias: true,
+          alpha: true,
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        setupLights();
+        createCentralHub();
+        createJobPlanets();
+        createStarField();
+        createOrbitRings();
+
+        document.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("resize", onWindowResize);
+
+        animate();
+      }
+
+      function setupLights() {
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.PointLight(0x60cbff, 1.5, 50);
+        mainLight.position.set(0, 0, 0);
+        scene.add(mainLight);
+
+        const blueLight = new THREE.PointLight(
+          CONFIG.colors.primaryBlue,
+          0.8,
+          30
+        );
+        blueLight.position.set(10, 5, 10);
+        scene.add(blueLight);
+
+        const redLight = new THREE.PointLight(CONFIG.colors.coralRed, 0.6, 30);
+        redLight.position.set(-10, 5, -10);
+        scene.add(redLight);
+      }
+
+      function createCentralHub() {
+        // Central glowing sphere representing the job platform hub
+        const geometry = new THREE.SphereGeometry(1.2, 64, 64);
+        const material = new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          emissive: CONFIG.colors.primaryBlue,
+          emissiveIntensity: 0.5,
+          roughness: 0.2,
+          metalness: 0.8,
+        });
+        centralSphere = new THREE.Mesh(geometry, material);
+        scene.add(centralSphere);
+
+        // Inner glow sphere
+        const glowGeometry = new THREE.SphereGeometry(1.3, 32, 32);
+        const glowMaterial = new THREE.MeshBasicMaterial({
+          color: CONFIG.colors.primaryBlue,
+          transparent: true,
+          opacity: 0.2,
+          side: THREE.BackSide,
+        });
+        const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+        centralSphere.add(glow);
+
+        // Outer aura
+        const auraGeometry = new THREE.SphereGeometry(1.6, 32, 32);
+        const auraMaterial = new THREE.MeshBasicMaterial({
+          color: CONFIG.colors.deepBlue,
+          transparent: true,
+          opacity: 0.1,
+          side: THREE.BackSide,
+        });
+        const aura = new THREE.Mesh(auraGeometry, auraMaterial);
+        centralSphere.add(aura);
+      }
+
+      function createJobPlanets() {
+        CONFIG.jobPlanets.forEach((data, i) => {
+          const planetGroup = new THREE.Group();
+
+          // Planet sphere
+          const geometry = new THREE.SphereGeometry(data.size, 32, 32);
+          const texture = createPlanetTexture(
+            data.title,
+            data.icon,
+            data.color
+          );
+          const material = new THREE.MeshStandardMaterial({
+            map: texture,
+            emissive: data.color,
+            emissiveIntensity: 0.4,
+            roughness: 0.3,
+            metalness: 0.5,
+          });
+          const planet = new THREE.Mesh(geometry, material);
+          planetGroup.add(planet);
+
+          // Planet glow
+          const glowGeometry = new THREE.SphereGeometry(
+            data.size * 1.15,
+            32,
+            32
+          );
+          const glowMaterial = new THREE.MeshBasicMaterial({
+            color: data.color,
+            transparent: true,
+            opacity: 0.3,
+            side: THREE.BackSide,
+          });
+          const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+          planetGroup.add(glow);
+
+          // Point light
+          const light = new THREE.PointLight(data.color, 0.8, 10);
+          planetGroup.add(light);
+
+          // Label
+          const label = createLabelSprite(data.title, data.color);
+          label.position.y = data.size + 0.8;
+          planetGroup.add(label);
+
+          planetGroup.userData = {
+            orbitRadius: data.orbitRadius,
+            orbitSpeed: data.orbitSpeed,
+            offset: data.offset,
+            planet: planet,
+            glow: glow,
+            light: light,
+            material: material,
+          };
+
+          planets.push(planetGroup);
+          scene.add(planetGroup);
+        });
+      }
+
+      function createStarField() {
+        const geometry = new THREE.BufferGeometry();
+        const positions = [];
+        const colors = [];
+
+        for (let i = 0; i < CONFIG.particles.count; i++) {
+          const x = (Math.random() - 0.5) * CONFIG.particles.spread;
+          const y = (Math.random() - 0.5) * CONFIG.particles.spread;
+          const z = (Math.random() - 0.5) * CONFIG.particles.spread;
+          positions.push(x, y, z);
+
+          const color = new THREE.Color();
+          color.setHSL(0.6 + Math.random() * 0.2, 0.8, 0.7);
+          colors.push(color.r, color.g, color.b);
+        }
+
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(positions, 3)
+        );
+        geometry.setAttribute(
+          "color",
+          new THREE.Float32BufferAttribute(colors, 3)
+        );
+
+        const material = new THREE.PointsMaterial({
+          size: CONFIG.particles.size,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.8,
+          sizeAttenuation: true,
+        });
+
+        particleSystem = new THREE.Points(geometry, material);
+        scene.add(particleSystem);
+      }
+
+      function createOrbitRings() {
+        const uniqueRadii = [
+          ...new Set(CONFIG.jobPlanets.map((p) => p.orbitRadius)),
+        ];
+
+        uniqueRadii.forEach((radius) => {
+          const geometry = new THREE.RingGeometry(
+            radius - 0.02,
+            radius + 0.02,
+            128
+          );
+          const material = new THREE.MeshBasicMaterial({
+            color: 0x60cbff,
+            transparent: true,
+            opacity: 0.1,
+            side: THREE.DoubleSide,
+          });
+          const ring = new THREE.Mesh(geometry, material);
+          ring.rotation.x = Math.PI / 2;
+          scene.add(ring);
+        });
+      }
+
+      function onMouseMove(e) {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      }
+
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        const time = clock.getElapsedTime();
+
+        // Rotate central hub
+        centralSphere.rotation.y = time * 0.1;
+        centralSphere.rotation.x = Math.sin(time * 0.2) * 0.1;
+
+        // Pulse central hub
+        const pulse = Math.sin(time * 2) * 0.5 + 0.5;
+        centralSphere.children[0].material.opacity = 0.15 + pulse * 0.1;
+
+        // Orbit planets
+        planets.forEach((planetGroup, i) => {
+          const data = planetGroup.userData;
+          const angle = time * data.orbitSpeed + data.offset;
+
+          planetGroup.position.x = Math.cos(angle) * data.orbitRadius;
+          planetGroup.position.z = Math.sin(angle) * data.orbitRadius;
+          planetGroup.position.y = Math.sin(angle * 2) * 0.5;
+
+          // Rotate planet
+          data.planet.rotation.y = time * 0.5;
+
+          // Pulse glow
+          const planetPulse = Math.sin(time * 3 + i) * 0.5 + 0.5;
+          data.glow.material.opacity = 0.2 + planetPulse * 0.2;
+          data.light.intensity = 0.6 + planetPulse * 0.4;
+          data.material.emissiveIntensity = 0.3 + planetPulse * 0.3;
+        });
+
+        // Rotate star field slowly
+        particleSystem.rotation.y = time * 0.01;
+        particleSystem.rotation.x = time * 0.005;
+
+        // Smooth camera follow mouse
+        targetX = mouseX * 2;
+        targetY = mouseY * 2;
+        camera.position.x += (targetX - camera.position.x) * 0.02;
+        camera.position.y += (5 + targetY - camera.position.y) * 0.02;
+        camera.lookAt(0, 0, 0);
+
+        renderer.render(scene, camera);
+      }
+
+      init();
+    </script>
+  </body>
+</html>

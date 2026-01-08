@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="../img/logo-1.png" type="image/x-icon" />
+    <title>Jobko | Login</title>
+  </head>
+  <body>
+    <div class="container-fluid px-3 px-md-4">
+      <div class="content-wrapper mx-auto">
+        <div class="card bg-transparent text-white border-0 mt-5">
+          <div
+            class="card-header d-flex align-items-center justify-content-between">
+            <a href="setup-profile.html" class="p-1 go-back rounded text-center text-white"><</a>
+            <h5 class="border-0 fw-bold">Interests</h5>
+            <a href="confirm-account.html" class="text-white">Skip</a>
+          </div>
+          <div class="card-body">
+            <div class="card-title border-0">
+              What Type of Jobs Your Looking For?
+            </div>
+            <div class="card-text mb-4 small text-white-50 border-0">
+              Choose your job categories and we'll recommend jobs for you
+            </div>
+            <form action="confirm-account.html">
+              <label
+                for="tech"
+                class="border-0 d-flex w-100 justify-content-between align-items-center p-3 interest-cards">
+                <div for="tech" class="interest-name d-flex gap-2">
+                  <i class="bi bi-briefcase-fill"></i>
+                  <span class="small fw-bold">Technology</span>
+                </div>
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="tech"
+                  id="tech"
+                  style="accent-color: purple" />
+              </label>
+
+              <label
+                for="cleaning"
+                class="border-0 d-flex w-100 justify-content-between align-items-center p-3 interest-cards mt-3">
+                <div for="tech" class="interest-name d-flex gap-2">
+                  <i class="bi bi-droplet text-warning"></i>
+                  <span class="small fw-bold">Cleaning</span>
+                </div>
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="cleaning"
+                  id="cleaning"
+                  style="accent-color: yellow" />
+              </label>
+
+              <label
+                for="develop"
+                class="border-0 d-flex w-100 justify-content-between align-items-center p-3 interest-cards mt-3">
+                <div for="develop" class="interest-name d-flex gap-2">
+                  <i class="bi bi-laptop text-success"></i>
+                  <span class="small fw-bold">Developer</span>
+                </div>
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="develop"
+                  id="develop"
+                  style="accent-color: green" />
+              </label>
+
+              <label
+                for="marketing"
+                class="border-0 d-flex w-100 justify-content-between align-items-center p-3 interest-cards mt-3">
+                <div for="marketing" class="interest-name d-flex gap-2">
+                  <i class="bi bi-clipboard-data text-danger"></i>
+                  <span class="small fw-bold">Mareting</span>
+                </div>
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="marketing"
+                  id="marketing"
+                  style="accent-color: red" />
+              </label>
+
+              <!-- submit button -->
+              <div
+                class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                <button type="submit" class="">Continue</button>
+              </div>
+              <!-- end of submit button -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

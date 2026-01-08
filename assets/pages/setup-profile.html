@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="../img/logo-1.png" type="image/x-icon" />
+    <title>Jobko | Login</title>
+  </head>
+  <body>
+    <div class="container-fluid px-3 px-md-4">
+      <div class="content-wrapper mx-auto">
+        <div class="card bg-transparent text-white border-0 mt-5">
+          <div
+            class="card-header d-flex align-items-center justify-content-between">
+            <a href="index2.html" class="p-1 go-back rounded text-center text-white"><</a>
+            <div class="border-0">
+              <div
+                class="profile-upload rounded d-flex align-items-center justify-content-center">
+                <label for="profileimg" class=""
+                  ><i class="bi bi-person-fill"></i
+                ></label>
+              </div>
+              <label for="profileimg" class="text-center upload-label"><small>Upload Profile</small></label>
+            </div>
+            <a href="interest.html" class="text-white">Skip</a>
+          </div>
+          <div class="card-body">
+            <div class="card-text mb-4 small text-white-50 border-0">
+              Give Credentials to complete your account
+            </div>
+            <form action="interest.html">
+              <!-- fullname -->
+              <label for="fullname" class="p-1">Full Name</label>
+              <div
+                class="d-flex align-items-center justify-content-between p-3 login-input mb-4">
+                <label for="fullname">
+                  <i class="bi bi-person"></i>
+                </label>
+                <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  class="fullname-no-edit"
+                  placeholder="Eledu Kenneth Somtochukwu"
+                  disabled />
+              </div>
+              <!-- end fullname -->
+
+              <!-- phone number -->
+              <label for="phone" class="p-1">Phone Number</label>
+              <div
+                class="d-flex align-items-center justify-content-between p-3 login-input mb-4">
+                <label for="fullname">
+                  <i class="bi bi-phone"></i>
+                </label>
+                <input
+                  type="number"
+                  name="phone"
+                  id="phone"
+                  class=""
+                  placeholder="+234 08123456789"
+                  required />
+              </div>
+              <!-- end phone number -->
+
+              <!-- date of birth -->
+              <label for="dob" class="p-1">Date of Birth</label>
+              <div
+                class="d-flex align-items-center justify-content-between p-3 login-input mb-4">
+                <label for="dob">
+                  <i class="bi bi-phone"></i>
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  class="text-white"
+                  required />
+              </div>
+              <!-- end of DOB -->
+
+              <!-- gender -->
+              <label for="gender" class="p-1">Gender</label>
+              <div
+                class="d-flex align-items-center justify-content-between p-3 login-input mb-4">
+                <label for="gender">
+                  <i class="bi bi-gender-ambiguous"></i>
+                </label>
+                <select name="gender" id="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Trans">Trans</option>
+                  <option value="RNS">Rather Not Say</option>
+                </select>
+              </div>
+              <!-- end of gender -->
+
+              <!-- submit button -->
+              <div
+                class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                <button type="submit" class="">Continue</button>
+              </div>
+              <!-- end of submit button -->
+              <!-- profile input -->
+              <input type="file" name="profileimg" id="profileimg" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

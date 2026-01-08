@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="../img/logo-1.png" type="image/x-icon" />
+    <title>Jobko | Job Details</title>
+  </head>
+  <body>
+    <div class="container-fluid px-3 px-md-4">
+      <div class="content-wrapper mx-auto">
+        <div class="card bg-transparent text-white border-0 mt-5">
+          <div
+            class="card-header d-flex align-items-center justify-content-between">
+            <a
+              href="applications.html"
+              class="p-1 go-back rounded text-center text-white"
+              ><</a
+            >
+            <h5 class="fw-bold">Job Details</h5>
+            <div></div>
+          </div>
+          <div class="card-body">
+            <!-- job details as heading -->
+            <div class="rounded popular-google p-1 mb-4">
+              <div class="container-fluid">
+                <!-- Job desc and bookmark -->
+                <div class="d-flex justify-content-between mb-3">
+                  <a
+                    href="job-details.html"
+                    class="text-white d-flex popular-job-details gap-2">
+                    <img src="../img/google.png" width="45px" alt="" />
+                    <div class="d-flex flex-column justify-content-between">
+                      <span class="company-name text-white-50"
+                        >Google LLC.</span
+                      >
+                      <span class="job-title text-white">Sr. UX Designer</span>
+                    </div>
+                  </a>
+                </div>
+                <!-- End of Job desc and bookmark -->
+
+                <!-- Job Tags -->
+                <div class="mb-4 job-tags d-flex gap-2">
+                  <div class="p-2 rounded">Design</div>
+                  <div class="p-2 rounded">Full-Time</div>
+                  <div class="p-2 rounded">Company</div>
+                </div>
+                <!-- End of Job Tags -->
+
+                <!-- salary and apply -->
+                <div class="d-flex justify-content-between job-salary">
+                  <span class="fw-semibold">₦7,000,000/ <sup>Year</sup></span>
+                </div>
+                <!-- end of salary and apply -->
+              </div>
+            </div>
+            <!-- end of job details as heading -->
+
+            <!-- job description scrollspy nav -->
+            <div
+              class="job-description-scrollspy d-flex align-items-center gap-3 mb-4 flex-wrap"
+              id="Scrolllspy">
+              <a
+                href="#Description"
+                class="nav-link rounded d-flex align-items-center p-2">
+                <small
+                  ><i class="bi bi-journal-text fw-semibold"></i> Job
+                  Description</small
+                >
+              </a>
+              <span>/</span>
+              <a
+                href="#Company"
+                class="nav-link text-white rounded d-flex align-items-center p-2">
+                <small
+                  ><i class="bi bi-building fw-semibold"></i> Company</small
+                >
+              </a>
+            </div>
+            <!-- end of job description scrollspy nav -->
+
+            <div
+              data-bs-spy="scroll"
+              data-bs-target="#Scrolllspy"
+              data-bs-smooth-scroll="true"
+              class="scrollspy-example p-3 rounded-2"
+              tabindex="0">
+              <!-- job description content -->
+              <div id="Description" class="d-flex flex-column mb-4">
+                <h6 class="fw-semibold small mb-3 text-white-50">
+                  About This Role
+                </h6>
+                <small class="mb-3">
+                  We are looking for a senior UX Designer. They say no man is an
+                  island, and this holds particulary true of this role. As a UX
+                  Designer, you’ll be part of the team that manages Go Pay -
+                  Southeast Asia’s largest payment application Requirement Skill
+                  For The Role
+                </small>
+                <h6 class="fw-semibold small mb-3 text-white-50">
+                  Requirement Skill For The Role
+                </h6>
+                <ul>
+                  <li>
+                    <small
+                      >Create information architecture and UX strategy</small
+                    >
+                  </li>
+                  <li>
+                    <small
+                      >Develop UI mockups and prototypes that clearly illustrate
+                      how sites function and look like</small
+                    >
+                  </li>
+                  <li>
+                    <small
+                      >Fluent English communication skills are a must.</small
+                    >
+                  </li>
+                  <li><small>Have a good comunication skill</small></li>
+                  <li>
+                    <small
+                      >Ability to browse lots of apps & web is a must</small
+                    >
+                  </li>
+                </ul>
+              </div>
+              <!-- end of job description content -->
+
+              <!-- company description content -->
+              <div id="Description" class="d-flex flex-column mb-4">
+                <h6 class="fw-semibold small mb-3 text-white-50">
+                  About this Company
+                </h6>
+                <small class="mb-3">
+                  Google is an American multi-national technology company
+                  focusing on search engine technology, computer software,
+                  quantum computing, online advertising, e-commerce, cloud
+                  computing, artificial intelligence, and consumer electronics.
+                </small>
+
+                <div class="d-flex justify-content-between align-items-center mb-1 small">
+                  <div class="d-flex gap-2">
+                    <i class="bi bi-globe text-primary"></i>
+                    <span class="text-white">Website:</span>
+                  </div>
+                  <div>
+                    <a href="https://www.google.com" class="text-white-50">www.google.com</a>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-1 small">
+                  <div class="d-flex gap-2">
+                    <i class="bi bi-geo-alt text-warning"></i>
+                    <span class="text-white">Headquarters:</span>
+                  </div>
+                  <div>
+                    <span class="text-white-50">Mountain View, CA</span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-1 small">
+                  <div class="d-flex gap-2">
+                    <i class="bi bi-calendar3 text-success"></i>
+                    <span class="text-white">Founded:</span>
+                  </div>
+                  <div>
+                    <span class="text-white-50">September 4, 1998</span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-1 small">
+                  <div class="d-flex gap-2">
+                    <i class="bi bi-people purple"></i>
+                    <span class="text-white">Employees:</span>
+                  </div>
+                  <div>
+                    <span class="text-white-50">156,500</span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-1 small">
+                  <div class="d-flex gap-2">
+                    <i class="bi bi-wallet "></i>
+                    <span class="text-white">Revenue:</span>
+                  </div>
+                  <div>
+                    <span class="text-white-50">$25 billion</span>
+                  </div>
+                </div>
+              </div>
+              <!-- end of company description content -->
+            </div>
+
+            <a href="apply-job.html" class="btn btn-primary mt-3 w-100 rounded-pill mb-3">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../Bootstrap/bootstrap.bundle.js"></script>
+  </body>
+</html>
